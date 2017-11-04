@@ -1,10 +1,9 @@
 
-require_relative "../../analyzer/app"
-require_relative "../../analyzer/analyzer"
-
 class TwitterController < ApplicationController
   def analyze
+    twitter    = TwitterAnalyzer.new(params[:user])
+
     @user      = params[:user]
-    @followers = TwitterAnalyzer.new.followers_count
+    @followers = twitter.followers_count
   end
 end

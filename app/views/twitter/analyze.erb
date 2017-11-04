@@ -6,3 +6,13 @@
 
 <p>Follower count:</p>
 <%= @followers %>
+
+<br>
+<br>
+
+<form action="/analyze" method="post">
+  <input type="hidden" name="user" value="<%= @user %>">
+  <input type="submit" name="button" value="Refresh!">
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+</form>

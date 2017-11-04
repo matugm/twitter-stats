@@ -10,6 +10,14 @@
 <br>
 <br>
 
+<% @top_tweets.each do |tweet| %>
+  <br>
+  <%= tweet.favorite_count %> - <%= tweet.text %>
+<% end %>
+
+<br>
+<br>
+
 <form action="/analyze" method="post">
   <input type="hidden" name="user" value="<%= @user %>">
   <input type="submit" name="button" value="Refresh!">

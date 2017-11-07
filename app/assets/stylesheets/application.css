@@ -19,7 +19,7 @@ input {
 }
 
 button {
-  background: white !important;
+  background: white;
   color: black;
   cursor: pointer;
 }

@@ -12,17 +12,21 @@ const style = {
 
 const App = () => (
   <MuiThemeProvider>
-    <TextField
-      name="user"
-      floatingLabelText="Twitter user"
-    />
+    <form action="/analyze" method="post">
+      <TextField
+        name="user"
+        floatingLabelText="Twitter user"
+      />
 
-    <RaisedButton
-     label="Analyze!"
-     primary={true}
-     style={style}
-     type="submit"
-    />
+      <RaisedButton
+       label="Analyze!"
+       primary={true}
+       style={style}
+       type="submit"
+      />
+
+    <input type='hidden' name='authenticity_token' value={123} />
+    </form>
   </MuiThemeProvider>
 );
 

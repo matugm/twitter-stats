@@ -7,10 +7,6 @@ import PropTypes from "prop-types"
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-const style = {
-  margin: 12,
-};
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,10 +28,15 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
+        <div className="homepage-form">
+        <h2>Please enter the twitter user you would like to analyze</h2>
+
         <form action="/analyze" method="post" onSubmit={this.validate} id="form">
           <TextField
             name="user"
             floatingLabelText="Twitter user"
+            inputStyle={{color: "white"}}
+            floatingLabelStyle={{color: "white"}}
             onChange={(e) => this.setState({user: e.target.value})}
             errorText={this.state.input_error}
           />
@@ -49,14 +50,14 @@ class App extends React.Component {
           />
           <input type='hidden' name='authenticity_token' value={this.props.token} />
         </form>
+        </div>
       </MuiThemeProvider>
     );
   }
 }
 
 App.propTypes = {
-  token: PropTypes.string,
-  state: PropTypes.object
+  token: PropTypes.string
 };
 
 export default App

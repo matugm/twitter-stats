@@ -18,7 +18,7 @@ class App extends React.Component {
   validate(e) {
     e.preventDefault();
 
-    if (this.state.user.length < 1) {
+    if (this.state.user.length == 0) {
       this.setState({input_error: "Please enter a valid user name."})
     } else {
       document.getElementById("form").submit();
@@ -28,8 +28,8 @@ class App extends React.Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="homepage-form">
-        <h2>Please enter the twitter user you would like to analyze</h2>
+        <div className="homepage_form">
+        <h2 className="header">Get Stats for Any Twitter User</h2>
 
         <form action="/analyze" method="post" onSubmit={this.validate} id="form">
           <TextField
@@ -39,6 +39,7 @@ class App extends React.Component {
             floatingLabelStyle={{color: "white"}}
             onChange={(e) => this.setState({user: e.target.value})}
             errorText={this.state.input_error}
+            fullWidth={true}
           />
 
           <br />
@@ -47,6 +48,7 @@ class App extends React.Component {
             label="Analyze!"
             primary={true}
             type="submit"
+            fullWidth={true}
           />
           <input type='hidden' name='authenticity_token' value={this.props.token} />
         </form>

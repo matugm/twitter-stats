@@ -4,18 +4,9 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from "prop-types"
 
-import RaisedButton from 'material-ui/RaisedButton';
-import Subheader from 'material-ui/Subheader';
-import {List, ListItem} from 'material-ui/List';
-
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
+import RefreshButton from './RefreshButton'
+import TwitterUserInfo from './TwitterUserInfo'
+import TopTweets from './TopTweets'
 
 class Results extends React.Component {
   constructor(props) {
@@ -41,47 +32,16 @@ class Results extends React.Component {
         <div className="results_page">
           <h2 className="header">Here Are Your Results!</h2>
 
-          <div className="white_box">
-            <p style={{fontWeight: "bold"}}>User name:</p>
-            {this.props.user}
+          <TwitterUserInfo
+            user={this.props.user}
+            followers_count={this.props.followers_count} />
 
-            <br />
+          <TopTweets
+            tweets={this.props.tweets} />
 
-            <p style={{fontWeight: "bold"}}>Follower count:</p>
-            {this.props.followers_count}
-          </div>
-
-          <h2 style={{marginTop: 20, textAlign: "center"}}>Top 10 Tweets</h2>
-
-          <Table fixedHeader={false} style={{ tableLayout: 'auto' }}>
-            <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-              <TableRow>
-                <TableHeaderColumn>Favorites</TableHeaderColumn>
-                <TableHeaderColumn>Tweet</TableHeaderColumn>
-              </TableRow>
-            </TableHeader>
-
-            <TableBody displayRowCheckbox={false}>
-              {this.props.tweets.map((tweet) =>
-                <TableRow>
-                  <TableRowColumn>{tweet.favorite_count}</TableRowColumn>
-                  <TableRowColumn>{tweet.text}</TableRowColumn>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-
-          <form action="/analyze" method="post" id="form">
-            <br />
-            <RaisedButton
-              label="Refresh!"
-              primary={true}
-              type="submit"
-            />
-
-            <input type='hidden' name='authenticity_token' value={this.props.token} />
-            <input type='hidden' name='user' value={this.props.user} />
-          </form>
+          <RefreshButton
+            user={this.props.user}
+            token={this.props.token} />
         </div>
       </MuiThemeProvider>
     );
@@ -91,7 +51,7 @@ class Results extends React.Component {
 Results.propTypes = {
   token: PropTypes.string,
   user: PropTypes.string,
-  tweets: PropTypes.object
+  tweets: PropTypes.array
 };
 
 export default Results

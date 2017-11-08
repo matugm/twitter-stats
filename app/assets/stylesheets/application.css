@@ -29,6 +29,20 @@ body {
   padding: 35px;
 }
 
+.results_page {
+  margin: 50px auto;
+  max-width: 1100px;
+  border: 3px solid silver;
+  border-radius: 3px;
+  padding: 35px;
+}
+
+.white_box {
+  background-color: white;
+  padding: 35px;
+  color: black;
+}
+
 .header {
   text-align: center;
 }

@@ -1,37 +1,7 @@
 
-<h1>Here are your results!</h1>
-
-<p>Twitter user:</p>
-<%= @user %>
-
-<p>Follower count:</p>
-<%= @followers %>
-
-<br>
-<br>
-
-<% @top_tweets.each do |tweet| %>
-  <br>
-  <%= tweet.favorite_count %> - <%= tweet.text %>
-<% end %>
-
-<br>
-<br>
-
-<% @word_count.each do |word, count| %>
-  <br>
-  <%= word %> - <%= count %>
-<% end %>
-
-<br>
-<br>
-
-<form action="/analyze" method="post">
-  <input type="hidden" name="user" value="<%= @user %>">
-  <input type="submit" name="button" value="Refresh!">
-
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-</form>
-
-<br>
-<br>
+<%= react_component "Results",
+    token: form_authenticity_token,
+    user: @user,
+    tweets:  @top_tweets,
+    followers_count: @followers
+%>
